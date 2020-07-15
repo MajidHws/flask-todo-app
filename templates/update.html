@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Todo Master
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron mt-3">
+        <h1>Todo Masters</h1>
+        <strong>Update a Task ({{task.content}})</strong>
+    </div>
+
+    <div class="">
+        <form action="/update/{{task.id}}" method="POST">
+            <div class="form-group row col">
+                <input aria-required="true" autofocus type="text" name="content" value="{{task.content}}" class="col col-sm-4 form-control" placeholder="Add A Task ...">
+                <button type="submit" class="btn btn-info ml-2">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="/" class="btn btn-primary">Manage Tasks</a>
+</div>
+
+
+{% endblock %}
