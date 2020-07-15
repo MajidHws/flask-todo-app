@@ -7,7 +7,13 @@ Todo Master
 
 <div class="container">
     <div class="jumbotron mt-3">
-        <h1>Todo Masters</h1>
+        <h1>Todo Masters 
+            <small>
+                {% if tasks|length > 0 %}
+                    {{ tasks|length }}
+                {% endif %}
+            </small>
+        </h1>
         <strong>where you can manage you daily tasks.</strong>
     </div>
 
@@ -21,28 +27,34 @@ Todo Master
     </div>
 
     <div class="">
-        <table class="table table-bordered table-striped table-hover">
+        {% if tasks|length > 0%}
+            <table class="table table-bordered table-striped table-hover">
 
-            <head>
-                <tr>
-                    <th>Task</th>
-                    <th>Added</th>
-                    <th>Actions</th>
-                </tr>
-            </head>
-            <tbody>
-                {% for task in tasks %}
+                <head>
                     <tr>
-                        <td>{{task.content}}</td>
-                        <td>{{task.date_created.date()}}</td>
-                        <td>
-                            <a href="delete/{{task.id}}">Delete</a>
-                            <a href="update/{{task.id}}">Update</a>
-                        </td>
+                        <th>Task</th>
+                        <th>Added</th>
+                        <th>Actions</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </head>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{task.content}}</td>
+                            <td>{{task.date_created.date()}}</td>
+                            <td>
+                                <a href="delete/{{task.id}}">Delete</a>
+                                <a href="update/{{task.id}}">Update</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="jumbotron">
+                <p class="lead text-center">CREATE NEW TASKS.</p>
+            </div>
+        {% endif %}
     </div>
 </div>
 
